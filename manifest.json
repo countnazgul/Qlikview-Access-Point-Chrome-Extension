@@ -12,8 +12,8 @@
    },
    "manifest_version": 2,
    "name": "QV Access Point",
-   "permissions": [ "http://54.72.252.121:88/*", "bookmarks", "clipboardWrite", "tabs"],
-   "update_url": "https://clients2.google.com/service/update2/crx",
+   "permissions": [ "http://54.72.252.121:88/*", "bookmarks", "clipboardWrite", "tabs", "storage"],
+   "options_page": "options.html",
    "version": "0.1",
    "background": {
       "page": "background.html"
