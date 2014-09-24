@@ -1,0 +1,21 @@
+{
+   "browser_action": {
+      "default_icon": "/images/16.png",
+      "default_popup": "popup.html",
+      "default_title": "QV Access Point"
+   },
+   "description": "Simple extension that give you an option to pack bookmarks or set of open tabs in single (goo.gl) link",
+   "icons": {
+      "128": "images/icons/128.png",
+      "16": "images/icons/16.png",
+      "48": "images/icons/48.png"
+   },
+   "manifest_version": 2,
+   "name": "QV Access Point",
+   "permissions": [ "http://54.72.252.121:88/*", "bookmarks", "clipboardWrite", "tabs"],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.1",
+   "background": {
+      "page": "background.html"
+   }   
+}
