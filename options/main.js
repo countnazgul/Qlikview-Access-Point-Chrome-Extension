@@ -36,6 +36,21 @@ $(document).ready(function() {
         }
       })
     });
+    
+   $("#clear").live("click", function() {
+            store.remove('server');
+            store.remove('username');
+            store.remove('password');
+            $("#server").val('');
+            $("#username").val('');
+            $("#password").val('');
+            $("#notif").text("Cleared");
+            $("#notif").fadeOut(5000, function() {
+              $("#notif").text("");
+              $("#notif").css({display: "inline"});
+            });
+    });    
+    
 });
 
 function ValidateBeforeSave(server, username, password, callback) {
