@@ -85,14 +85,14 @@ $(document).ready(function() {
                       $("#search_list").append('<div class="outer"><li><a title="QVW: ' + qvdocument._text + 
                                                     '\nCategory: '+ qvdocument._category + 
                                                     '\nSize: '+ qvdocument._filesize + 
-                                                    '\nClients: ' + qvdocument._clients  +
+                                                    //'\nClients: ' + qvdocument._clients  +
                                                     '\nLast Modified: ' + qvdocument._lastModified  +
                                                     '\nLast Update: ' + qvdocument._lastUpdate  +
                                                     '\nNext Update: ' + qvdocument._nextUpdate  +
                                                     '" href="' + openUrl + '' + qvdocument._value + '&client=Ajax' + '" target="_blank">' + 
-                                                    fav + qvdoc + availability + '</a></li></div>');
+                                                    fav + qvdoc + availability + '</a> <span style="display:none">' + qvdocument._category + '</span> </li></div>');
                     }
-  //                   $('#search_input').fastLiveFilter('#search_list');
+                    
                     $('#search_input').fastLiveFilter('#search_list', { 
                             callback:function(total) {
                             $('#search_list').unhighlight();
@@ -116,7 +116,9 @@ $(document).ready(function() {
               
             })
               .fail(function() {
-                //console.log('test');
+                jQuery("#loading").hide();
+                jQuery("#error").show();
+                $("#error").text('Communication error. Please try again later.');
               });
     } else {
       jQuery("#loading").hide();
