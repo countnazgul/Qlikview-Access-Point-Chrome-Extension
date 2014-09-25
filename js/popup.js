@@ -132,9 +132,22 @@ function TryLogin(username, password, callback) {
    jQuery("#loading").show();
    
 	 formData = {username : username, password: password };
-	 
+
+if(server.indexOf('http:') > -1) {
+  server = server.replace('http://', "");
+  url = 'http://' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@' + server + '/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm';
+} else {
+  if(server.indexOf('https:') > -1) {
+    server = server.replace('https://', "");
+    url = 'https://' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@' + server + '/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm';
+  } else {
+    url = 'http://' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@' + server + '/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm';
+  }
+}
+
 	 var ajaxObject = {
-  		url: server + "/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
+	    url: url,
+  		//url: server + "/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
   		contentType: 'application/x-www-form-urlencoded',
   		type: 'POST',
   		cache: false,
