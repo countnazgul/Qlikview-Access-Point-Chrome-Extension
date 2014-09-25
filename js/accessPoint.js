@@ -75,7 +75,7 @@ var platform = ap.browserType(navigator.userAgent.toLowerCase());
 if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i) || (navigator.userAgent.match(/iPad/i)))) {
     isMobApple = "1"
 }
-var url = "http://54.72.252.121:88/QvAJAXZfc/AccessPoint.aspx?mark=&platform=" + platform + "&dpi=96";
+var url = "http://qlikview/QvAJAXZfc/AccessPoint.aspx?mark=&platform=" + platform + "&dpi=96";
 ap.getCookieValue = function(b) {
     var c = document.cookie;
     var d = c.indexOf(" " + b + "=");
@@ -363,7 +363,7 @@ ap.writeList = function(d) {
             }
             var j = "";
             if (($(this).attr("imgHash") != "") && ($(this).attr("imgHash") != null)) {
-                q = "http://54.72.252.121:88/QvAJAXZfc/AccessPoint.aspx?datamode=binary&name=" + encodeURIComponent($(this).attr("value")) + "&stamp=" + $(this).attr("imgHash") + "&kind=AccessPoint";
+                q = "http://qlikview/QvAJAXZfc/AccessPoint.aspx?datamode=binary&name=" + encodeURIComponent($(this).attr("value")) + "&stamp=" + $(this).attr("imgHash") + "&kind=AccessPoint";
                 j = '"width="155"'
             } else {
                 q = "images/missing.jpg";

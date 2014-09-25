@@ -6,6 +6,7 @@
     <script src="js/xml2json.min.js"></script>
     <script src="js/fastLiveFilter.js"></script>
     <script src="js/jquery.highlight.js"></script>
+    <script src="js/store+json2.min.js"></script>
      
     <link rel="stylesheet" href="css/styles.css">
 
@@ -15,12 +16,15 @@
    
     <div id="list4">
       <input id="search_input" type="search" placeholder="Type to filter">
+      <div id="error" height="30px" style="min-height: 35px;"></div>
+      <div id="loading" height="30px" style="min-height: 35px;">
+        <img src="images/ajax-loader.gif" height="24" width="24" class="center"></img><br/>
+        <span style="margin-top: 10px; left: 47%; position: absolute;" >Loading ...</span>
+      </div>
       <ul id="search_list">
 
       </ul>
     </div>
-<!--    <script src="js/login.js"></script>
-    <script src="js/accessPoint.js"></script> -->
     <script src="js/popup.js"></script>
   </body>
 </html>

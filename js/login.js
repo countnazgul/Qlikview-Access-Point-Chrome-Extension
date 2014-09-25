@@ -45,7 +45,7 @@ function RedirectToLoginpage() {
     //var url = "http://54.72.252.121:88/QvAJAXZfc/GetLoginpageUrl.aspx";
     formData = {"username" : "CORP%5Ccountnazgul", "password":"Nababatidiskoto1" };
 $.ajax({
-    url : "http://54.72.252.121:88/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
+    url : "http://qlikview/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
     cacheControl: 'no-cache',
     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
     type: "POST",
@@ -88,11 +88,11 @@ $.ajax({
 }
 
 function TryLogin(url, username, password, callback) {
-	username = 'countnazgul';
-	password = 'Nababatidiskoto1'; password=
-	 formData = {username : "CORP\\countnazgul", password:"Nababatidiskoto1" };
+	//username = 'countnazgul';
+	//password = 'Nababatidiskoto1'; password=
+	 formData = {username : "SYSTEMS\\S7729841", password:"S7329841" };
 	var ajaxObject = {
-		url: "http://54.72.252.121:88/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
+		url: "http://qlikview/QvAJAXZfc/Authenticate.aspx?back=/qlikview/FormLogin.htm",
 		//url: "http://QvAJAXZfc/Authenticate.aspx",
 		contentType: 'application/x-www-form-urlencoded',
 		type: 'POST',

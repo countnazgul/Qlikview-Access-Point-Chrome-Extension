@@ -5,8 +5,8 @@
   }
   
 #list4 ul { 
-      margin: 0; 
-      padding: 0; 
+      margin-top: 0px; 
+      padding: 0px; 
       list-style-type: none;
   
   }
@@ -57,3 +57,19 @@
     height: 0;
     display: inline-block;
 }  
+
+.center {
+    position: absolute;
+    left: 50%; 
+}
+
+.header-cont {
+    background: #FFFFFF;
+    height: 26px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    font-family: Tahoma;
+    font-size: 10px;    
+}
