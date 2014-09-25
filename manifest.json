@@ -14,7 +14,7 @@
    "name": "QlikView Access Point",
    "permissions": [ "storage", "<all_urls>"],
    "options_page": "options/index.html",
-   "version": "0.6",
+   "version": "0.7",
    "background": {
       "page": "background.html"
    }   
