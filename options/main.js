@@ -49,7 +49,28 @@ $(document).ready(function() {
               $("#notif").text("");
               $("#notif").css({display: "inline"});
             });
-    });    
+    }); 
+    
+   $("#add").live("click", function() {
+          $( "#displaytable" ).append('<section><div><table><tr> \
+						      <td>Server</td> \
+						      <td><input id="server" type="text"  size="97" placeholder="QV server dns/ip in format: http://my-qv-server [add port if server is not listening on 80 (default)]"></td> \
+						      <td></td> \
+						    </tr> \
+						    <tr> \
+						      <td>Username</td> \
+						      <td><input id="username" type="text" placeholder="domain\\username"></td> \
+						      <td></td> \
+						    </tr> \
+						    <tr> \
+						      <td>Password</td> \
+						      <td><input id="password"  type="password" placeholder="password"></td> \
+						      <td>Remove</td> \
+						    </tr> \
+						  </table> \
+						</div> \
+					</section>');
+    });     
     
 });
 

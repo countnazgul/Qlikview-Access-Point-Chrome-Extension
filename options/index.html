@@ -17,7 +17,7 @@
 	<div id="navbar-content-title">Options</div>
 	<ul id="navbar">
 	  <li id="details" class="navbar-item navbar-item-selected">Details</li>
-		<li id="servers" class="navbar-item">Server</li>
+		<li id="servers" class="navbar-item">Servers</li>
 		<li id="about" class="navbar-item">About</li>
 	</ul>
 </div>
@@ -46,34 +46,38 @@
 			</div>
 			
 			<div id="serversPage" class="page">
-				<h1>Server</h1>
-				<div class="displaytable">
+				<h1>Servers</h1>
+				<div class="displaytable" id="displaytable">
 					<section>
-						<h3>Server</h3>
+						<!-- <h3 style="color: white">Server</h3> -->
 						<div>
-							<input id="server" type="text" placeholder="QV server dns/ip in format: http://my-qv-server [add port if server is not listening on 80 (default)]" size="80">
-						</div>
+						  <table>
+						    <tr>
+						      <td>Server</td>
+						      <td><input id="server" type="text"  size="97" placeholder="QV server dns/ip in format: http://my-qv-server [add port if server is not listening on 80 (default)]"></td>
+						      <td></td>
+						    </tr>
+						    <tr>
+						      <td>Username</td>
+						      <td><input id="username" type="text" placeholder="domain\username"></td>
+						      <td></td>
+						    </tr>
+						    <tr>
+						      <td>Password</td>
+						      <td><input id="password"  type="password" placeholder="password"></td>
+						      <td>Remove</td>
+						    </tr>						    
+						  </table>
+						</div> 
+
 					</section>
-					<section>
-						<h3>Username</h3>
-						<div>
-							<input id="username" type="text" placeholder="domain\username">
-						</div>
-					</section>
-					<section>
-						<h3>Password</h3>
-						<div>
-							<input id="password"  type="password" placeholder="password">
-						</div>
-					</section>	
-					<section>
-						<h3> </h3>
-						<div>
-							<button id="clear" style="margin-top: 10px">Clear</button> <button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
+				</div>
+										<div>
+							<button id="clear" style="margin-top: 10px">Clear</button>
+							<button id="add" style="margin-top: 10px">Add</button>
+							<button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
 							
 						</div>
-					</section>					
-				</div>
 			</div>
 			
 			<div id="aboutPage" class="page">
