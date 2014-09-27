@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/select.css" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/store+json2.min.js"></script>
+<script type="text/javascript" src="../js/Math.uuid.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
@@ -48,36 +49,12 @@
 			<div id="serversPage" class="page">
 				<h1>Servers</h1>
 				<div class="displaytable" id="displaytable">
-					<section>
-						<!-- <h3 style="color: white">Server</h3> -->
-						<div>
-						  <table>
-						    <tr>
-						      <td>Server</td>
-						      <td><input id="server" type="text"  size="97" placeholder="QV server dns/ip in format: http://my-qv-server [add port if server is not listening on 80 (default)]"></td>
-						      <td></td>
-						    </tr>
-						    <tr>
-						      <td>Username</td>
-						      <td><input id="username" type="text" placeholder="domain\username"></td>
-						      <td></td>
-						    </tr>
-						    <tr>
-						      <td>Password</td>
-						      <td><input id="password"  type="password" placeholder="password"></td>
-						      <td>Remove</td>
-						    </tr>						    
-						  </table>
-						</div> 
 
-					</section>
 				</div>
-										<div>
-							<button id="clear" style="margin-top: 10px">Clear</button>
-							<button id="add" style="margin-top: 10px">Add</button>
-							<button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
-							
-						</div>
+        <div>
+					<button id="add" style="margin-top: 10px">Add</button>
+					<button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
+				</div>
 			</div>
 			
 			<div id="aboutPage" class="page">
