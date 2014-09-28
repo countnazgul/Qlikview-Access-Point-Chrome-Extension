@@ -8,7 +8,6 @@
       margin-top: 0px; 
       padding: 0px; 
       list-style-type: none;
-  
   }
   
 #list4 ul li { }
@@ -63,13 +62,23 @@
     left: 50%; 
 }
 
-.header-cont {
-    background: #FFFFFF;
-    height: 26px;
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    font-family: Tahoma;
-    font-size: 10px;    
+.content
+{
+    position:absolute;
+    top: 50px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow-y:scroll;        
+}
+
+.server {
+    display: inline-block;
+    position: absolute;
+    padding-top: 0px;
+    padding-bottom: 13px;
+    padding-left: 40px;
+    padding-right: 20px;
+    right: 65px; 
+    margin-top: 7px;      
 }

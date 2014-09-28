@@ -18,54 +18,34 @@ $(document).ready(function() {
   });
 
    $("#save").live("click", function() {
-      // var server = document.getElementById('server').value;
-      // var username = document.getElementById('username').value;
-      // var password = document.getElementById('password').value;
-      // ValidateBeforeSave(server, username, password, function(validate) {
-      //   if(validate == true ) {
-      //       store.set('server', server);
-      //       store.set('username', username);
-      //       store.set('password', password);
-      //       $("#notif").text("Saved");
-      //       $("#notif").fadeOut(5000, function() {
-      //         $("#notif").text("");
-      //         $("#notif").css({display: "inline"});
-      //       });
-      //   } else {
-      //       $("#notif").text("Please fill all fields.");
-      //       $("#notif").fadeOut(5000, function() {
-      //         $("#notif").text("");
-      //         $("#notif").css({display: "inline"});
-      //       });            
-      //   }
-      // })
-      
-            // test = $( "#displaytable" ).find('table');
-            // for(t = 0; t < test.length; t++) {
-            //   inputs = $( test[t] ).find('table');  
-            //   console.log(inputs.length);
-            // }
-            
-            servers = [];
-            $( "#displaytable" ).find('table').each(function(i) {
-              var $this = $(this);
-              server = {};
-              $this.find('input').each(function(a) {
-                server[$(this).attr('id')] = $(this).val();
-              });
+     Save();
+            // servers = [];
+            // $( "#displaytable" ).find('table').each(function(i) {
+            //   var $this = $(this);
+            //   server = {};
+            //   $this.find('input').each(function(a) {
+            //     server[$(this).attr('id')] = $(this).val();
+            //   });
               
-              $this.find('button').each(function(a) {
-                server.id = $(this).attr('id');
-              });
-              //server.id = Math.uuid(17);
-              servers.push(server);
-            });
+            //   $this.find('button').each(function(a) {
+            //     server.id = $(this).attr('id');
+            //   });
+            //   //server.id = Math.uuid(17);
+            //   servers.push(server);
+            // });
             
-            store.set('servers', JSON.stringify(servers));
+            // store.set('servers', JSON.stringify(servers));
+            // $("#notif").text("Saved");
+            // $("#notif").fadeOut(5000, function() {
+            //   $("#notif").text("");
+            //   $("#notif").css({display: "inline"});
+            // });
     });
     
    $("#add").live("click", function() {
-      AppendServerSection('', '', '', Math.uuid(17));
+      AppendServerSection('', '', '', '', '', Math.uuid(17));
+      Save();
+      RemoveServer();
     });     
     
 });
@@ -74,22 +54,40 @@ function LoadFromStorage() {
     $("#displaytable").html('');
     servers = store.get('servers');
     if(servers) {
-    servers = JSON.parse(servers);
-       for(i = 0; i < servers.length; i++) {
-         AppendServerSection(servers[i].server, servers[i].username, servers[i].password, servers[i].id);
-       }
-       RemoveServer();
+      servers = JSON.parse(servers);
+         for(i = 0; i < servers.length; i++) {
+           
+          var counter = 0;
+          s = servers[i];
+          for (var key in s) {
+            if(counter == 4) {
+              color = s[key];
+              colorId = key;
+            }
+            counter++;
+          }
+          
+           AppendServerSection(servers[i].server, servers[i].username, servers[i].password, colorId, color ,servers[i].id);
+           //console.log(servers[i][3])
+         }
+      RemoveServer();
     }
+    
+    //jscolor.install();
 }
 
-function AppendServerSection(server, username, password, id) {
+function AppendServerSection(server, username, password, colorId, color ,id) {
+  if(!colorId) {
+    colorId = Math.uuid(17);
+  }
+  
   $( "#displaytable" ).append(' \
   <section> \
     <div> \
       <table><tr> \
 		      <td>Server</td> \
 		      <td><input id="server" value="'+ server  +'" type="text"  size="97" placeholder="QV server dns/ip in format: http://my-qv-server [add port if server is not listening on 80 (default)]"></td> \
-		      <td></td> \
+		      <td> </td> \
 		    </tr> \
 		    <tr> \
 		      <td>Username</td> \
@@ -99,11 +97,25 @@ function AppendServerSection(server, username, password, id) {
 		    <tr> \
 		      <td>Password</td> \
 		      <td><input id="password" value="'+ password  +'" type="password" placeholder="password"></td> \
-		      <td><button id="' + id + '" class="remove" style="margin-top: 10px">Remove</button></td> \
+		      <td></td> \
+		    </tr> \
+		    <tr> \
+		    <td>Identifier</td> \
+		    <td> <input id="nametag" placeholder="optional name tag"></td> \
+		    <td></td> \
+		    </tr> \
+		    <tr> \
+		    <td>Color</td> \
+		    <td> <input class="color" value="' + color +'" id="' + colorId + '"> (optional)</td> \
+		    <td><button id="' + id + '" class="remove" style="margin-top: 10px">Remove</button></td> \
 		    </tr> \
 		  </table> \
 		</div> \
 	</section>');
+	
+	input = document.getElementById(colorId);
+	col = new jscolor.color(input)
+	
 }
 
 function RemoveServer() {
@@ -122,8 +134,37 @@ function RemoveServer() {
         store.set('servers', JSON.stringify(result));
         $("#displaytable").html('');
 	      LoadFromStorage();
+        $("#notif").text("Saved");
+        $("#notif").fadeOut(5000, function() {
+          $("#notif").text("");
+          $("#notif").css({display: "inline"});
+        });	      
     }, false);
 	}  
+}
+
+function Save() {
+  servers = [];
+  $( "#displaytable" ).find('table').each(function(i) {
+    var $this = $(this);
+    server = {};
+    $this.find('input').each(function(a) {
+      server[$(this).attr('id')] = $(this).val();
+    });
+    
+    $this.find('button').each(function(a) {
+      server.id = $(this).attr('id');
+    });
+    //server.id = Math.uuid(17);
+    servers.push(server);
+  });
+  
+  store.set('servers', JSON.stringify(servers));
+  $("#notif").text("Saved");
+  $("#notif").fadeOut(5000, function() {
+    $("#notif").text("");
+    $("#notif").css({display: "inline"});
+  });
 }
 
 function ValidateBeforeSave(server, username, password, callback) {

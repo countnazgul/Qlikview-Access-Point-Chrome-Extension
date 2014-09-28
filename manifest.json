@@ -1,6 +1,6 @@
 {
    "browser_action": {
-      "default_icon": "/images/16.png",
+      "default_icon": "/images/icons/16.png",
       "default_popup": "popup.html",
       "default_title": "QlikView Access Point"
    },
@@ -14,7 +14,7 @@
    "name": "QlikView Access Point",
    "permissions": [ "storage", "<all_urls>"],
    "options_page": "options/index.html",
-   "version": "0.8",
+   "version": "1.3",
    "background": {
       "page": "background.html"
    }   
