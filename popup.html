@@ -16,15 +16,17 @@
   <body>
    
     <div id="list4">
-      <input id="search_input" type="search" placeholder="Type to filter">
-      <div id="error" height="20px" style="min-height: 20px; margin-top: 5px"></div>
-      <div id="loading" height="30px" style="min-height: 35px; margin-top: 6px; margin-bottom: 6px;">
+      <input id="search_input" type="search" style="position: fixed; top: 5px;" placeholder="Type to filter">
+      <div id="error" height="20px" style="margin-top: 30px"></div>
+      <!-- <div id="loading" height="30px" style="min-height: 35px; margin-top: 6px; margin-bottom: 6px;">
         <img src="images/ajax-loader.gif" height="24" width="24" class="center"></img><br/>
         <span style="margin-top: 10px; left: 47%; position: absolute;" >Loading ...</span>
+      </div> -->
+      <div style="margin-top: 30px; overflow-x: auto; height: 450px; width: 400px">
+        <ul id="search_list">
+  
+        </ul>
       </div>
-      <ul id="search_list">
-
-      </ul>
     </div>
     <script src="js/popup.js"></script>
   </body>

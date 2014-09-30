@@ -74,11 +74,11 @@
 
 .server {
     display: inline-block;
-    position: absolute;
+    margin-right: 55px;
     padding-top: 0px;
     padding-bottom: 13px;
     padding-left: 40px;
     padding-right: 20px;
-    right: 65px; 
+    float: right; 
     margin-top: 7px;      
 }

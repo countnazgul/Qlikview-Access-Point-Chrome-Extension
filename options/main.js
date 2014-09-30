@@ -19,33 +19,17 @@ $(document).ready(function() {
 
    $("#save").live("click", function() {
      Save();
-            // servers = [];
-            // $( "#displaytable" ).find('table').each(function(i) {
-            //   var $this = $(this);
-            //   server = {};
-            //   $this.find('input').each(function(a) {
-            //     server[$(this).attr('id')] = $(this).val();
-            //   });
-              
-            //   $this.find('button').each(function(a) {
-            //     server.id = $(this).attr('id');
-            //   });
-            //   //server.id = Math.uuid(17);
-            //   servers.push(server);
-            // });
-            
-            // store.set('servers', JSON.stringify(servers));
-            // $("#notif").text("Saved");
-            // $("#notif").fadeOut(5000, function() {
-            //   $("#notif").text("");
-            //   $("#notif").css({display: "inline"});
-            // });
     });
     
    $("#add").live("click", function() {
       AppendServerSection('', '', '', '', '', Math.uuid(17));
       Save();
       RemoveServer();
+    }); 
+    
+    $("#test").live("click", function() {
+      var bkg = chrome.extension.getBackgroundPage();
+      bkg.Main();
     });     
     
 });
@@ -54,6 +38,7 @@ function LoadFromStorage() {
     $("#displaytable").html('');
     servers = store.get('servers');
     if(servers) {
+      $("#save").show();
       servers = JSON.parse(servers);
          for(i = 0; i < servers.length; i++) {
            
@@ -71,6 +56,8 @@ function LoadFromStorage() {
            //console.log(servers[i][3])
          }
       RemoveServer();
+    } else {
+      $("#save").hide();
     }
     
     //jscolor.install();
@@ -165,12 +152,4 @@ function Save() {
     $("#notif").text("");
     $("#notif").css({display: "inline"});
   });
-}
-
-function ValidateBeforeSave(server, username, password, callback) {
-  if (server == null || server == "" || username == null || username == "" || password==null || password == "") {
-    callback(false);
-  } else {
-    callback(true);
-  }
 }
