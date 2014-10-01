@@ -20,7 +20,7 @@ function Main() {
     
     toprocess = servers.length;
 
-      favorite = '<img src="images/box_star.png" height="14" width="14" style="margin-left: -11px;; left: 0px; margin-top: 8px">';
+      favorite = '<img src="images/box_star.png" height="14" width="14" style="margin-left: -11px;; left: 0px; margin-top: 1px">';
       ajaxImg = '<img src="images/icon_ajax.png" height="14" width="14" style="margin-top: 7px;opacity: 0.4;float: right;margin-right: -79px;">';
       ieImg = '<img src="images/icon_ie.png" height="14" width="14" style="right: 15px; margin-top: 7px; opacity: 0.4;float: right;margin-right: -110px;">';
       mobileImg = '<img src="images/icon_mobile.png" height="14" width="14" style="right: 31px; margin-top: 7px; opacity: 0.5;float: right;margin-right: -95px;">';
