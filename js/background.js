@@ -2,14 +2,12 @@ var storage = chrome.storage.local;
 
 setInterval(function()
 {
-  //Main();
-},5000);
+  Main();
+}, 3000000);
 
 
 //$(document).ready(function() {
 function Main() {  
-  // jQuery("#error").hide();
-  // jQuery("#loading").show();
   errors = [];
   toprocess = 0;
   allprocessed = 0;
@@ -17,26 +15,11 @@ function Main() {
   
   servers = store.get('servers');
   store.set('error', '');
-  //console.log(servers);
-  // if(!servers) {
-  //   AllProcessed();
-  //   errors.push('No servers defined. Use Options page.');
-  //   Errors();
-  // } else {
     servers = JSON.parse(servers);
     if(servers.length > 0) {
     
     toprocess = servers.length;
-      // $(".signOutLink").click(function() {
-      //     var e = '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Logout" action="" clientsizeWH="1280:939" /></update>';
-      //     $.post(url, e, function(f) {
-      //         location.reload()
-      //     })
-      // })    
-      
-      // jQuery("#loading").show();
-      // jQuery("#error").hide();
-      
+
       favorite = '<img src="images/box_star.png" height="14" width="14" style="margin-left: -11px;; left: 0px; margin-top: 8px">';
       ajaxImg = '<img src="images/icon_ajax.png" height="14" width="14" style="margin-top: 7px;opacity: 0.4;float: right;margin-right: -79px;">';
       ieImg = '<img src="images/icon_ie.png" height="14" width="14" style="right: 15px; margin-top: 7px; opacity: 0.4;float: right;margin-right: -110px;">';
@@ -58,8 +41,8 @@ function Main() {
           
                 TryLogin(username, password, function(status) {
                   if(status != false) {
-                    //jQuery("#loading").show();
-                    var a = '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Update" action="" /><set name="Document" add="mode;ie6false" /><set name="AccessPoint.Pagesize" value="0" /></update>';
+                    var a = '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Update" action="" /><set name="Document" add="mode;ie6false" /><set name="AccessPoint.Pages.Current" value="0" /><set name="AccessPoint.Pages.Current" value="0" /><set name="AccessPoint.Pagesize" value="0" /></update>';
+//                            '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Update" action="" /><set name="AccessPoint.Pages.Current" value="0" /><set name="AccessPoint.AttributeValue" value="" /><set name="Document" add="mode;ie6false" /><set name="AccessPoint.SearchFilter" text="" /><set name="AccessPoint.Pages.Current" value="0" /></update>
                     $.post(url, a)
                       .done(function( c ) {
                       //console.log(c)
@@ -67,6 +50,7 @@ function Main() {
                             var x2js = new X2JS();
                             var jsonObj = x2js.xml_str2json( xmlText );
                             result = jsonObj.result.object.value;
+                            //console.log(result);
                             for(i = 0; i < result.length; i++) {
                               if( result[i]._name == 'Documents') {
                                 documents = result[i].element;
@@ -122,7 +106,7 @@ function Main() {
                                                    color-stop(0%,rgba(' + r + ',' + g + ',' + b + ',0)), \
                                                    color-stop(73%,rgba(' + r + ',' + g + ',' + b + ',0)), \
                                                    color-stop(100%,rgba(' + r + ',' + g + ',' + b + ',1)));';
-                                  //$("#search_list").append( <div class="outer"></div>
+                                  
                                   allDocuments = allDocuments + '<li><a title="QVW: ' + qvdocument._text +
                                                                 '\nServer: '+ value.server +
                                                                 '\nCategory: '+ qvdocument._category + 
@@ -133,29 +117,17 @@ function Main() {
                                                                 '\nNext Update: ' + qvdocument._nextUpdate  +
                                                                 '" href="' + openUrl + '' + qvdocument._value + '&client=Ajax' + '" target="_blank">' + 
                                                                 '<span class="server" width: 14; style="' + categoryColor +' font-size:9px;"></span>' +
-                                                                fav + qvdoc.substring(0,41) + availability + '</a><span style="display:none">' + qvdocument._category + 
-                                                                '</span><span style="display:none">' + value.server + 
-                                                                '</span><span style="display:none">' + value.nametag + 
-                                                                '</span> </li>'
+                                                                fav + qvdoc.substring(0,41) + availability + '</a><span style="display:none" class="category">' + qvdocument._category + 
+                                                                '</span><span style="display:none" class="server">' + value.server + 
+                                                                '</span><span style="display:none" class="nametag">' + value.nametag + '</span> \
+                                                                <span style="display:none" class="qvw">' +  qvdocument._text + '</span> \
+                                                                <span style="display:none" class="lastmodified">' + qvdocument._lastModified + '</span> \
+                                                                <span style="display:none" class="lastupdate">' + qvdocument._lastUpdate + '</span> \
+                                                                <span style="display:none" class="size">' +  qvdocument._filesize + '</span> \
+                                                                </li>'
                                                                 //);
                                 }
                                 
-                                // $('#search_input').fastLiveFilter('#search_list', { 
-                                //         callback:function(total) {
-                                //         $('#search_list').unhighlight();
-                                //         searchTerm = $("#search_input").val();
-                                //         if (searchTerm.length > 0) {
-                                //             $('#search_list').highlight(searchTerm);
-                                //         }
-                                //     }
-                                // });
-                                // $("#search_input").on("search", function() {
-                                //   if ($('#search_input').val() == "")
-                                //     $('#search_input').val('').change();
-                                // });
-                                
-                                // websiteAddress = document.getElementById("search_input");
-                                // websiteAddress.focus();
                                 allprocessed++;
                                 AllProcessed();
                               }
@@ -187,13 +159,10 @@ function Main() {
           });
     } else {
       AllProcessed();
-      //jQuery("#error").show();
       errors.push('No servers defined. Use Options page.');
       Errors();
     }
 }
-//});    
-  
   
 function TryLogin(username, password, callback) {
 	formData = {username : username, password: password };
@@ -229,23 +198,17 @@ function TryLogin(username, password, callback) {
 
 function AllProcessed() {
   if(allprocessed == toprocess) {
-    //jQuery("#loading").hide();
     store.set('docs', allDocuments);
-    //console.log(allDocuments);
   }
 }
 
 function Errors(){
-  //store.set('error', '');
-  //$("#error").html('');
   text = '';
   
   for(i = 0; i < errors.length; i++) {
     text = '<br/>' + text + errors[i];
   }
   store.set('error', text)
-  //$("#error").html(text);  
-  //jQuery("#error").show();
 }
 
 function hexToRgb(hex) {

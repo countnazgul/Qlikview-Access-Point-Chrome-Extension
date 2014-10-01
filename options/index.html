@@ -1,94 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>QlikView Access Point Options</title>
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/chrome_shared.css" />
-<link rel="stylesheet" href="css/browser.css" />
-<link rel="stylesheet" href="css/checkbox.css" />
-<link rel="stylesheet" href="css/button.css" />
-<link rel="stylesheet" href="css/select.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/store+json2.min.js"></script>
-<script type="text/javascript" src="../js/Math.uuid.js"></script>
-<script type="text/javascript" src="../js/jscolor.js"></script>
-<script type="text/javascript" src="main.js"></script>
-</head>
-<body>
-<div id="navbar-container">
-	<div id="navbar-content-title">Options</div>
-	<ul id="navbar">
-	  <li id="details" class="navbar-item navbar-item-selected">Details</li>
-		<li id="servers" class="navbar-item">Servers</li>
-		<li id="about" class="navbar-item">About</li>
-	</ul>
-</div>
-<div id="mainview">
-	<div id="mainview-content">
-		<div id="page-container">
-			<div id="detailsPage" class="page" style="display:block">
-				<h1>Details</h1>
-				<div class="displaytable">
-					<section>
-						<h3>Details</h3>
-						<div>
-						  <!-- <input type="color" name="favcolor"> -->
-							This extension will display the documents from QlikView Access Points in more simple and pleasent way :) <br/> 
-							(Most of the code for this extension is reused from original Access Point web page.)
-							 <br/>  <br/> 
-							<h3>This is not official Qlik extension!</h3>
-						</div>
-					</section>
-					<section>
-						<h3>Security</h3>
-						<div>
-							  All options are saved locally. Local storage is used instead of sync storage, which will sync extension data across Chrome sessions.
-						</div>
-					</section>
-				</div>			
-			</div>
-			
-			<div id="serversPage" class="page">
-				<h1>Servers</h1>
-				<div class="displaytable" id="displaytable">
-
-				</div>
-        <div>
-					<button id="add" style="margin-top: 10px">Add</button>
-					<button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
-					<button id="test" style="margin-top: 10px">Force data download</button>
-				</div>
-			</div>
-			
-			<div id="aboutPage" class="page">
-				<h1>About</h1>
-				<div class="displaytable">
-					<section id="version">
-						<h3>Version</h3>
-						<div id="appversion"></div>
-					</section>
-					<section>
-						<h3>Created by</h3>
-						<div>
-							<div class="section-group"><span>Stefan Stoichev</span></div>
-							<div class="section-group"><span><a href="https://plus.google.com/u/0/+StefanStoichev/posts" target="_blank">+StefanStoichev</a></span><span class="informational-text"> - Google +</span></div>
-							<div class="section-group"><span><a href="http://twitter.com/countnazgul" target="_blank">@countnazgul</a></span><span class="informational-text"> - Twitter</span></div>
-							<div class="section-group"><span><a href="http://sstoichev.eu" target="_blank">http://sstoichev.eu</a></span><span class="informational-text"> - Website</span></div>
-						</div>
-					</section>
-					<section>
-						<h3>Send feedback</h3>
-						<div>
-							<a href="mailto:stefan.stoichev@gmail.com">stefan.stoichev@gmail.com</a>
-						</div>
-					</section>
-
-				</div>
-			</div>
-			
-		</div>
-	</div>
-</div>
-
-</body>
+  <head>
+    <title>QlikView Access Point Options</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/chrome_shared.css" />
+    <link rel="stylesheet" href="css/browser.css" />
+    <link rel="stylesheet" href="css/checkbox.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <link rel="stylesheet" href="css/select.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/store+json2.min.js"></script>
+    <script type="text/javascript" src="../js/Math.uuid.js"></script>
+    <script type="text/javascript" src="../js/jscolor.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body>
+    <div id="navbar-container">
+    	<div id="navbar-content-title">Options</div>
+    	<ul id="navbar">
+    	  <li id="details" class="navbar-item navbar-item-selected">Details</li>
+    		<li id="servers" class="navbar-item">Servers</li>
+    		<li id="about" class="navbar-item">About</li>
+    	</ul>
+    </div>
+    <div id="mainview">
+    	<div id="mainview-content">
+    		<div id="page-container">
+    			<div id="detailsPage" class="page" style="display:block">
+    				<h1>Details</h1>
+    				<div class="displaytable">
+    					<section>
+    						<h3>Details</h3>
+    						<div>
+    							This extension will display the documents from QlikView Access Points in more simple and pleasent way :) <br/> 
+    							(Most of the code for this extension is reused from original Access Point web page.)
+    							 <br/>  <br/> 
+    							<h3>This is not official Qlik extension!</h3>
+    						</div>
+    					</section>
+    					<section>
+    						<h3>Security</h3>
+    						<div>
+    							  All options are saved locally. Local storage is used instead of sync storage, which will sync extension data across Chrome sessions.
+    						</div>
+    					</section>
+    				</div>			
+    			</div>
+    			
+    			<div id="serversPage" class="page">
+    				<h1>Servers</h1>
+    				<div class="displaytable" id="displaytable">
+    
+    				</div>
+            <div>
+    					<button id="add" style="margin-top: 10px">Add</button>
+    					<button id="save" style="margin-top: 10px">Save</button> <span id="notif" style="display: inline"></span><br/>
+    					<button id="force" style="margin-top: 10px">Force data download</button>
+    				</div>
+    			</div>
+    			
+    			<div id="aboutPage" class="page">
+    				<h1>About</h1>
+    				<div class="displaytable">
+    					<section id="version">
+    						<h3>Version</h3>
+    						<div id="appversion"></div>
+    					</section>
+    					<section>
+    						<h3>Created by</h3>
+    						<div>
+    							<div class="section-group"><span>Stefan Stoichev</span></div>
+    							<div class="section-group"><span><a href="https://plus.google.com/u/0/+StefanStoichev/posts" target="_blank">+StefanStoichev</a></span><span class="informational-text"> - Google +</span></div>
+    							<div class="section-group"><span><a href="http://twitter.com/countnazgul" target="_blank">@countnazgul</a></span><span class="informational-text"> - Twitter</span></div>
+    							<div class="section-group"><span><a href="http://sstoichev.eu" target="_blank">http://sstoichev.eu</a></span><span class="informational-text"> - Website</span></div>
+    						</div>
+    					</section>
+    					<section>
+    						<h3>Send feedback</h3>
+    						<div>
+    							<a href="mailto:stefan.stoichev@gmail.com">stefan.stoichev@gmail.com</a>
+    						</div>
+    					</section>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+  </body>
 </html>

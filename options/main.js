@@ -27,7 +27,7 @@ $(document).ready(function() {
       RemoveServer();
     }); 
     
-    $("#test").live("click", function() {
+    $("#force").live("click", function() {
       var bkg = chrome.extension.getBackgroundPage();
       bkg.Main();
     });     
@@ -53,14 +53,11 @@ function LoadFromStorage() {
           }
           
            AppendServerSection(servers[i].server, servers[i].username, servers[i].password, colorId, color ,servers[i].id);
-           //console.log(servers[i][3])
          }
       RemoveServer();
     } else {
       $("#save").hide();
     }
-    
-    //jscolor.install();
 }
 
 function AppendServerSection(server, username, password, colorId, color ,id) {
@@ -142,7 +139,7 @@ function Save() {
     $this.find('button').each(function(a) {
       server.id = $(this).attr('id');
     });
-    //server.id = Math.uuid(17);
+
     servers.push(server);
   });
   
