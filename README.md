@@ -6,6 +6,8 @@ The extension will show the same set of documents as the original Access Point.
 
 More info http://sstoichev.eu/2014/09/28/qlikview-access-point-chrome-extension/
 
+Chrome Web Store: https://chrome.google.com/webstore/detail/qlikview-access-point/bffmjibnpahmflmhdhkiippboihplcoo
+
 Thanks to:
 
 * @PeterJosling - for Options page design 
