@@ -1,9 +1,10 @@
 # README #
 
-Chrome extension the will easy and quick way to open Qlikview document from any Qlikview Access Point. 
+Chrome extension that open Qlikview documents from any Qlikview Access Points
 
 The extension will show the same set of documents as the original Access Point.
 
+More info http://sstoichev.eu/2014/09/28/qlikview-access-point-chrome-extension/
 
 Thanks to:
 
