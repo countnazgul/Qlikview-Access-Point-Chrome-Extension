@@ -1,1 +1,6 @@
-test.html
+/node_modules
+/*.log
+/dist
+/dist-zip
+src/options/options_old.js
+src/options/options_old.html
