@@ -59,22 +59,22 @@ export default {
     return {
       option: true,
       servers: [
-        {
-          id: 1,
-          url: "",
-          user: "",
-          pass: "",
-          color: "",
-          name: ""
-        },
-        {
-          id: 2,
-          url: "",
-          user: "",
-          pass: "",
-          color: "",
-          name: ""
-        }
+        // {
+        //   id: 1,
+        //   url: "",
+        //   user: "",
+        //   pass: "",
+        //   color: "",
+        //   name: ""
+        // },
+        // {
+        //   id: 2,
+        //   url: "",
+        //   user: "",
+        //   pass: "",
+        //   color: "",
+        //   name: ""
+        // }
       ]
     };
   },
@@ -109,6 +109,11 @@ export default {
   computed: {},
   mounted: function() {
     var _this = this;
+
+    chrome.storage.local.get("servers", function(servers) {
+      console.log(servers)
+      _this.servers = servers.servers
+    });
   }
 };
 </script>

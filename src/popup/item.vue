@@ -26,6 +26,7 @@ export default {
   mounted: function() {
     var _this = this;
     var d = _this.doc._attributes
+    
     _this.tooltip = 
     `Document: ${d.text}
 Server: ${d.server}
@@ -34,7 +35,8 @@ Path: ${d.path}
 Size: ${d.filesize}
 Last Modified: ${d.lastModified}
 Last Update: ${d.lastUpdate}
-Color: ${d.color}`
+Color: ${d.color}
+Server name: ${d.serverName}`
   }
 };
 </script>
