@@ -1,8 +1,9 @@
 <template>
   <div>
-    <li class="item">  
-      <div>
-        <span v-on:click="openDoc" class="link" :title="tooltip">{{ doc._attributes.text }}</span>
+    <li class="item ">  
+      <div class="grid-container-app">
+        <span v-on:click="openDoc" class="link leftMenu-app" :title="tooltip">{{ doc.text }}</span>
+        <div class="rightMenu-app" v-bind:style="{ color: doc.color, 'background-color': doc.color  }">.</div>
       </div>
     </li>
   </div>
@@ -19,13 +20,13 @@ export default {
   methods: {
     openDoc: function() {
       var _this = this;
-      var url = `https://app.instantview.io/QvAJAXZfc/AccessPoint.aspx?open=&id=${_this.doc._attributes.value}&client=Ajax`
+      var url = `${_this.doc.server}QvAJAXZfc/AccessPoint.aspx?open=&id=${_this.doc.value}&client=Ajax`
       window.open(url, '_blank');      
     }
   },
   mounted: function() {
     var _this = this;
-    var d = _this.doc._attributes
+    var d = _this.doc
     
     _this.tooltip = 
     `Document: ${d.text}
@@ -47,6 +48,30 @@ Server name: ${d.serverName}`
 }
 
 .item {
-  padding-bottom: 7px;
+  padding-bottom: 3px;
 }
+
+.grid-container-app {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-gap: 0px;
+  width: 400px;
+}
+
+.leftMenu-app {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: left;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+
+.rightMenu-app {
+  grid-column-start: 2;
+  grid-column-end: 2;  
+  opacity: 0.4;
+  z-index: -100;
+}
+
+
 </style>

@@ -25,7 +25,7 @@
                 <div v-if="!option" class="mainContentAbout">
                   <div class="aboutContainer">                     
                       <div class="aboutContent"> <h3>Version</h3> </div>
-                      <div class="aboutContent"> 2.0.0 </div>                                            
+                      <div class="aboutContent"> 2.0.2 </div>                                            
                       <div class="aboutContent"></div>
                       <div class="aboutContent"> <h3>Description</h3> </div>
                       <div class="aboutContent">
@@ -103,6 +103,13 @@ export default {
 
       chrome.storage.local.set({ servers: _this.servers }, function() {
         console.log("Saved");
+        _this.$notify({
+          title: "Saved",
+          message: "Locally saved",
+          type: "success",
+          duration: 1000,
+          showClose: false
+        });
       });
     }
   },
@@ -111,8 +118,8 @@ export default {
     var _this = this;
 
     chrome.storage.local.get("servers", function(servers) {
-      console.log(servers)
-      _this.servers = servers.servers
+      console.log(servers);
+      _this.servers = servers.servers;
     });
   }
 };

@@ -38,8 +38,11 @@
       <el-color-picker v-model="server.color"></el-color-picker>
     </div>    
     <div class="leftMenu-server">
-      <el-button type="danger" @click="removeServer">Delete</el-button>
-    </div>                 
+      <el-button type="danger" @click="removeServer">Delete</el-button>      
+    </div>   
+    <div class="rightMenu-server">
+      <el-button type="primary" plain disabled>Test</el-button>
+    </div>                     
   </div>
 </template>
 

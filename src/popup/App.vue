@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="grid-container">
     
     <div v-if="!loaded" class="loading">
       <i class="el-icon-loading"></i>
@@ -14,8 +14,10 @@
             v-model="searchString"
             clearable>
           </el-input>
-          <i v-if="!noServers" class="el-icon-setting" @click="openOptions"></i>
-          <span v-if="noServers"> No servers found. \n Add server(s) from the</span> <span @click="openOptions" class="optionsLink">options</span> <span>page</span>
+          <!-- <i v-if="!noServers" class="el-icon-setting" @click="openOptions"></i> -->
+          <div v-if="noServers">
+            <span > No servers found. Add server(s) from the</span> <span @click="openOptions" class="optionsLink">options</span> <span>page</span>
+          </div>
         </div>
       </div>
       <div  v-if="!noServers" class="content">
@@ -48,6 +50,19 @@ import async from "async";
 
 // async function GetDocuments() {}
 
+var sort_by = function(field, reverse, primer){
+
+   var key = primer ? 
+       function(x) {return primer(x[field])} : 
+       function(x) {return x[field]};
+
+   reverse = !reverse ? 1 : -1;
+
+   return function (a, b) {
+       return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+     } 
+}
+
 export default {
   components: {
     item
@@ -56,6 +71,7 @@ export default {
     return {
       test: [],
       docs: [],
+      docs_temp: [],
       loaded: false,
       noServers: false,
       searchString: ""
@@ -64,7 +80,7 @@ export default {
   computed: {
     filterByDoc: function() {
       return this.docs.filter(doc => {
-        return doc._attributes.text
+        return doc.text
           .toLowerCase()
           .match(this.searchString.toLowerCase());
       });
@@ -87,6 +103,7 @@ export default {
         async.each(
           servers.servers,
           function(server, callback) {
+            // console.log(server);
             xhr(
               {
                 method: "post",
@@ -114,100 +131,84 @@ export default {
                     });
                     docs = JSON.parse(docs);
 
+                    var docsList = [];
                     async.each(
-                      docs.result.object.value[20].element,
-                      function(doc, callback) {
-                        //   var localDoc = docs.result.object.value[20].element[d];
-                        // console.log(server)
-                        doc._attributes.color = server.color;
-                        doc._attributes.serverName = server.name;
-                        _this.docs.push(doc);
+                      docs.result.object.value,
+                      function(obj, callback) {
+                        // console.log(obj)
+                        if (obj._attributes.name == "Documents") {
+                          docsList = obj;
+                          // console.log(docsList)
+                        }
                         callback();
                       },
                       function(err) {
-                        callback();
+                        async.each(
+                          //docs.result.object.value[20].element,
+                          docsList.element,
+                          function(doc, callback) {
+                            // doc.text = doc.text.replace(
+                            //   ".qvw",
+                            //   ""
+                            // );
+                            doc._attributes.color = server.color;
+                            doc._attributes.serverName = server.name;
+                            var d = doc._attributes
+                            _this.docs_temp.push(d);
+                            callback();
+                          },
+                          function(err) {
+                            callback();
+                          }
+                        );
                       }
-                    );
-
-                    // _this.docs = docs.result.object.value[20].element
-
-                    // console.log(server);
-
-                    // for (
-                    //   var d = 0;
-                    //   d < docs.result.object.value[20].element.length;
-                    //   d++
-                    // ) {
-                    //   var localDoc = docs.result.object.value[20].element[d];
-                    //   localDoc.color = server.color;
-                    //   localDoc.server = server.name;
-                    //   _this.docs.push(localDoc);
-                    // }
-
-                    _this.loaded = true;
+                    );                    
                   }
                 );
-
-                // callback();
               }
             );
           },
-          function(err) {}
+          function(err) {
+            // console.log(_this.docs)
+            _this.docs = _this.docs_temp.sort(sort_by('text', false, function(a){return a.toUpperCase()}));
+            _this.loaded = true;
+          }
         );
       } else {
         _this.loaded = true;
         _this.noServers = true;
       }
-      /*
-      for (var i = 0; i < servers.servers.length; i++) {
-        var server = servers.servers[i];
-        console.log(server);
-        xhr(
-          {
-            method: "post",
-            body: `username=${server.user}&password=${server.pass}`,
-            uri: `${server.url}/QvAJAXZfc/Authenticate.aspx?back=/FormLogin.htm`,
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          function(err, resp, body) {
-            xhr(
-              {
-                method: "post",
-                body:
-                  '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Update" action="" /><set name="AccessPoint.Pages.Current" value="0" /><set name="AccessPoint.Pagesize" value="0" /><set name="AccessPoint.Category" value="" /><set name="Document" add="mode;ie6false" /><set name="AccessPoint.SearchFilter" text="" /></update>',
-                uri: `${server.url}/QvAJAXZfc/AccessPoint.aspx?mark=&platform=browser.chrome&dpi=96`,
-                headers: {}
-              },
-              function(err, resp, body) {
-                var docs = convert.xml2json(body, { compact: true, spaces: 4 });
-                docs = JSON.parse(docs);
-                console.log(server);
-                for (
-                  var d = 0;
-                  d < docs.result.object.value[20].element.length;
-                  d++
-                ) {
-                  var localDoc = docs.result.object.value[20].element[d];
-                  localDoc.color = server.color;
-                  localDoc.server = server.name;
-                  _this.docs.push(localDoc);
-                }
-
-                _this.loaded = true;
-              }
-            );
-          }
-        );
-      }
-      */
     });
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.grid-container {
+  grid-template-columns: 10% 90%;
+  grid-gap: 0px;
+  padding: 0px;
+  height: 100vh;
+}
+
+.header {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background-color: lightgray;
+  text-align: center;
+  border: 1px;
+  border-right-style: solid;
+}
+
+.apps-list {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background-color: lightgray;
+  text-align: center;
+  border: 1px;
+  border-right-style: solid;
+}
+
 p {
   font-size: 20px;
 }

@@ -1,7 +1,7 @@
 {
   "name": "QlikView Access Point",
   "description": "Navigate through your QlikView Access Point documents in Chrome",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "manifest_version": 2,
   "icons": {
     "48": "icons/48.png",
