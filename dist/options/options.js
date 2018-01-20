@@ -58237,14 +58237,20 @@ exports.default = {
 
   methods: {
     addServer: function addServer() {
-      this.servers.unshift({
+      var emptyObject = {
         id: (0, _v2.default)(),
         url: "",
         user: "",
         pass: "",
         color: "",
         name: ""
-      });
+      };
+
+      if (this.servers) {
+        this.servers.unshift(emptyObject);
+      } else {
+        this.servers = [emptyObject];
+      }
     },
     removeServer: function removeServer(id) {
       // console.log(id);
@@ -61645,7 +61651,7 @@ var staticRenderFns = [
         _c("h3", [_vm._v("Version")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "aboutContent" }, [_vm._v(" 2.0.4 ")]),
+      _c("div", { staticClass: "aboutContent" }, [_vm._v(" 2.0.5 ")]),
       _vm._v(" "),
       _c("div", { staticClass: "aboutContent" }),
       _vm._v(" "),
