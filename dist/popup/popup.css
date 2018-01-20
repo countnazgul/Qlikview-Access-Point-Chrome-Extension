@@ -1,0 +1,26 @@
+
+.link[data-v-1cc5725e] {
+  cursor: pointer;
+}
+.item[data-v-1cc5725e] {
+  padding-bottom: 3px;
+}
+.grid-container-app[data-v-1cc5725e] {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-gap: 0px;
+  width: 400px;
+}
+.leftMenu-app[data-v-1cc5725e] {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: left;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+.rightMenu-app[data-v-1cc5725e] {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  opacity: 0.4;
+  z-index: -100;
+}
