@@ -1,6 +1,6 @@
 /node_modules
 /*.log
-/dist
-/dist-zip
+/dist1
+/dist1-zip
 src/options/options_old.js
 src/options/options_old.html

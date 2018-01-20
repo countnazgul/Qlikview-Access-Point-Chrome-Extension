@@ -40,23 +40,85 @@
     <div class="leftMenu-server">
       <el-button type="danger" @click="removeServer">Delete</el-button>      
     </div>   
-    <div class="rightMenu-server">
-      <el-button type="primary" plain disabled>Test</el-button>
-    </div>                     
+    <!--<div class="rightMenu-server">
+      <el-button type="primary" plain @click="testConnection">Test</el-button>
+      {{ testResult.text }}
+    </div> -->
   </div>
 </template>
 
 <script>
+import xhr from "xhr";
+import convert from "xml-js";
+
 export default {
   props: ["server"],
   data() {
     return {
-      tooltip: ""
+      tooltip: "",
+      testResult: {
+        type: "",
+        text: ""
+      }
     };
   },
   methods: {
     removeServer: function() {
-      this.$emit("removeServer", this.server.id);
+      var _this = this;
+      this.$confirm("Are you shure you want to delete this server?", "", {
+        confirmButtonText: "YES",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      })
+        .then(() => {
+          _this.$emit("removeServer", this.server.id);
+        })
+        .catch(() => {});
+    },
+    testConnection: function() {
+      /*      
+      var _this = this;
+      _this.testResult = {
+        type: "",
+        text: ""
+      };
+
+      xhr(
+        {
+          method: "post",
+          body: `username=${_this.server.user}&password=${_this.server.pass1}`,
+          uri: `${_this.server
+            .url}/QvAJAXZfc/Authenticate.aspx?back=/FormLogin.htm`,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        },
+        function(err, resp, body) {
+          xhr(
+            {
+              method: "post",
+              body:
+                '<update mark="" stamp="" cookie="true" scope="Document" ident="AccessPoint" kind="AccessPoint"><set name="AccessPoint.Update" action="" /><set name="AccessPoint.Pages.Current" value="0" /><set name="AccessPoint.Pagesize" value="0" /><set name="AccessPoint.Category" value="" /><set name="Document" add="mode;ie6false" /><set name="AccessPoint.SearchFilter" text="" /></update>',
+              uri: `${_this.server
+                .url}/QvAJAXZfc/AccessPoint.aspx?mark=&platform=browser.chrome&dpi=96`,
+              headers: {}
+            },
+            function(err, resp, body) {
+              var docs = convert.xml2json(body, {
+                compact: true,
+                spaces: 4
+              });
+              docs = JSON.parse(docs);
+
+              _this.testResult = {
+                type: true,
+                text: docs.result.object.value[3]._attributes.value
+              };
+            }
+          );
+        }
+      );
+*/
     }
   },
   mounted: function() {

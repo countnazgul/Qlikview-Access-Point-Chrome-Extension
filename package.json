@@ -1,7 +1,7 @@
 {
-  "name": "my-extension",
-  "version": "1.0.0",
-  "description": "A Vue.js web extension",
+  "name": "qlikview-access-point",
+  "version": "2.0.4",
+  "description": "Fast way to open QlikView documents from multiple servers from within Chrome",
   "author": "Stefan Stoichev <stefan.stoichev@gmail.com>",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --hide-modules",

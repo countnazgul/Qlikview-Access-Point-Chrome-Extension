@@ -25,13 +25,13 @@
                 <div v-if="!option" class="mainContentAbout">
                   <div class="aboutContainer">                     
                       <div class="aboutContent"> <h3>Version</h3> </div>
-                      <div class="aboutContent"> 2.0.3 </div>      
+                      <div class="aboutContent"> 2.0.4 </div>      
 
 
                       <div class="aboutContent"></div>
                       <div class="aboutContent"> <h3>Description</h3> </div>
                       <div class="aboutContent">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        Fast way to open QlikView documents from multiple servers from within Chrome
                       </div>
                       <div class="aboutContent"></div>
 
@@ -80,7 +80,7 @@ export default {
       });
     },
     removeServer: function(id) {
-      console.log(id);
+      // console.log(id);
 
       var filteredServers = this.servers.filter(function(server) {
         return server.id !== id;
@@ -108,7 +108,7 @@ export default {
     var _this = this;
 
     chrome.storage.local.get("servers", function(servers) {
-      console.log(servers);
+      // console.log(servers);
       _this.servers = servers.servers;
     });
   }
