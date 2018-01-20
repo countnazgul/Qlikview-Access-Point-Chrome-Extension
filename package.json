@@ -1,6 +1,6 @@
 {
   "name": "qlikview-access-point",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Fast way to open QlikView documents from multiple servers from within Chrome",
   "author": "Stefan Stoichev <stefan.stoichev@gmail.com>",
   "scripts": {
@@ -15,6 +15,7 @@
     "element-ui": "^2.0.11",
     "uuid": "^3.1.0",
     "vue": "^2.4.1",
+    "vue-analytics": "^5.8.0",
     "xhr": "^2.4.1",
     "xml-js": "^1.6.2"
   },

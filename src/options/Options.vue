@@ -25,7 +25,7 @@
                 <div v-if="!option" class="mainContentAbout">
                   <div class="aboutContainer">                     
                       <div class="aboutContent"> <h3>Version</h3> </div>
-                      <div class="aboutContent"> 2.0.4 </div>      
+                      <div class="aboutContent"> 2.0.5 </div>      
 
 
                       <div class="aboutContent"></div>
@@ -70,14 +70,20 @@ export default {
   },
   methods: {
     addServer: function() {
-      this.servers.unshift({
+      var emptyObject = {
         id: uuid(),
         url: "",
         user: "",
         pass: "",
         color: "",
         name: ""
-      });
+      };
+
+      if (this.servers) {
+        this.servers.unshift(emptyObject);
+      } else {
+        this.servers = [emptyObject]
+      }
     },
     removeServer: function(id) {
       // console.log(id);

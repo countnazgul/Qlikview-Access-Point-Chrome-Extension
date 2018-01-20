@@ -42,6 +42,7 @@ import xhr from "xhr";
 import convert from "xml-js";
 import item from "./item";
 import async from "async";
+
 // import eachSeries from "async/eachSeries";
 
 // async function Login() {
@@ -104,7 +105,8 @@ export default {
     _this.docs = [];
 
     chrome.storage.local.get("servers", function(servers) {
-      if (servers.servers.length > 0) {
+      if (servers.servers) {
+        // if (servers.servers.lebgth > 0) {
         async.each(
           servers.servers,
           function(server, callback) {
