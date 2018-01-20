@@ -25,13 +25,20 @@
                 <div v-if="!option" class="mainContentAbout">
                   <div class="aboutContainer">                     
                       <div class="aboutContent"> <h3>Version</h3> </div>
-                      <div class="aboutContent"> 2.0.2 </div>                                            
+                      <div class="aboutContent"> 2.0.3 </div>      
+
+
                       <div class="aboutContent"></div>
                       <div class="aboutContent"> <h3>Description</h3> </div>
                       <div class="aboutContent">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                       </div>
                       <div class="aboutContent"></div>
+
+                      <div class="aboutContent"> <h3>Repo</h3> </div>
+                      <div class="aboutContent"> <a href="https://github.com/countnazgul/Qlikview-Access-Point-Chrome-Extension" target="_blank">GitHub</a> </div>                            
+                      <div class="aboutContent"></div>
+                      
                       <div class="aboutContent"> <h3>Created by</h3> </div>
                       <div class="aboutContent"> Stefan Stoichev</div>
                       <div class="aboutContent"> Twitter: <a href="http://twitter.com/countnazgul" target="_blank">@countnazgul</a></div>
@@ -39,7 +46,7 @@
                       <div class="aboutContent"> GitHub: <a href="https://github.com/countnazgul" target="_blank">countnazgul</a></div>
 
                       <div class="aboutContent"></div>
-                      <div class="aboutContent"> <h3>Changelog</h3> </div>       
+                      <div class="aboutContent"> <h3>Changelog</h3> </div>     
                   </div>
                 </div>
             </div>
@@ -58,24 +65,7 @@ export default {
   data() {
     return {
       option: true,
-      servers: [
-        // {
-        //   id: 1,
-        //   url: "",
-        //   user: "",
-        //   pass: "",
-        //   color: "",
-        //   name: ""
-        // },
-        // {
-        //   id: 2,
-        //   url: "",
-        //   user: "",
-        //   pass: "",
-        //   color: "",
-        //   name: ""
-        // }
-      ]
+      servers: []
     };
   },
   methods: {

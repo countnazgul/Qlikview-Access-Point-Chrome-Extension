@@ -3,6 +3,8 @@
     
     <div v-if="!loaded" class="loading">
       <i class="el-icon-loading"></i>
+      <br>
+      <span class="loadingMessage">Loading {{loadingServer}} ...</span>
     </div>
 
     <div v-if="loaded">
@@ -50,18 +52,21 @@ import async from "async";
 
 // async function GetDocuments() {}
 
-var sort_by = function(field, reverse, primer){
+var sort_by = function(field, reverse, primer) {
+  var key = primer
+    ? function(x) {
+        return primer(x[field]);
+      }
+    : function(x) {
+        return x[field];
+      };
 
-   var key = primer ? 
-       function(x) {return primer(x[field])} : 
-       function(x) {return x[field]};
+  reverse = !reverse ? 1 : -1;
 
-   reverse = !reverse ? 1 : -1;
-
-   return function (a, b) {
-       return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
-     } 
-}
+  return function(a, b) {
+    return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+  };
+};
 
 export default {
   components: {
@@ -73,6 +78,7 @@ export default {
       docs: [],
       docs_temp: [],
       loaded: false,
+      loadingServer: "",
       noServers: false,
       searchString: ""
     };
@@ -80,17 +86,16 @@ export default {
   computed: {
     filterByDoc: function() {
       return this.docs.filter(doc => {
-        return doc.text
-          .toLowerCase()
-          .match(this.searchString.toLowerCase());
+        return (
+          doc.text.toLowerCase().match(this.searchString.toLowerCase()) ||
+          doc.serverName.toLowerCase().match(this.searchString.toLowerCase()) ||
+          doc.category.toLowerCase().match(this.searchString.toLowerCase())
+        );
       });
     }
   },
   methods: {
     openOptions: function() {
-      // chrome.tabs.create({
-      //   url: "chrome://extensions/?options=" + chrome.runtime.id
-      // });
       chrome.tabs.create({ url: "options/options.html" });
     }
   },
@@ -103,7 +108,7 @@ export default {
         async.each(
           servers.servers,
           function(server, callback) {
-            // console.log(server);
+            _this.loadingServer = server.name;
             xhr(
               {
                 method: "post",
@@ -114,7 +119,6 @@ export default {
                 }
               },
               function(err, resp, body) {
-                // console.log(body)
 
                 xhr(
                   {
@@ -135,25 +139,22 @@ export default {
                     async.each(
                       docs.result.object.value,
                       function(obj, callback) {
-                        // console.log(obj)
                         if (obj._attributes.name == "Documents") {
                           docsList = obj;
-                          // console.log(docsList)
                         }
                         callback();
                       },
                       function(err) {
                         async.each(
-                          //docs.result.object.value[20].element,
                           docsList.element,
                           function(doc, callback) {
-                            // doc.text = doc.text.replace(
-                            //   ".qvw",
-                            //   ""
-                            // );
+                            doc._attributes.text = doc._attributes.text.replace(
+                              ".qvw",
+                              ""
+                            );
                             doc._attributes.color = server.color;
                             doc._attributes.serverName = server.name;
-                            var d = doc._attributes
+                            var d = doc._attributes;
                             _this.docs_temp.push(d);
                             callback();
                           },
@@ -162,15 +163,18 @@ export default {
                           }
                         );
                       }
-                    );                    
+                    );
                   }
                 );
               }
             );
           },
           function(err) {
-            // console.log(_this.docs)
-            _this.docs = _this.docs_temp.sort(sort_by('text', false, function(a){return a.toUpperCase()}));
+            _this.docs = _this.docs_temp.sort(
+              sort_by("text", false, function(a) {
+                return a.toUpperCase();
+              })
+            );
             _this.loaded = true;
           }
         );
@@ -222,6 +226,10 @@ ul {
   font-size: 40px;
   text-align: center;
   padding-top: 40%;
+}
+
+.loadingMessage {
+  font-size: 20px;
 }
 
 .searchBar {

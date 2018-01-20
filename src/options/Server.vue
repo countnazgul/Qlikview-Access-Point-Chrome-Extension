@@ -7,7 +7,7 @@
       <el-input 
         size="medium"
         placeholder="Server name (optional)" 
-        v-model="server.name"></el-input> {{server.id}}
+        v-model="server.name"></el-input> <!--{{server.id}}-->
     </div>    
 
     <div class="leftMenu-server">
@@ -47,9 +47,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   props: ["server"],
   data() {
@@ -58,8 +55,8 @@ export default {
     };
   },
   methods: {
-    removeServer: function() {      
-      this.$emit('removeServer', this.server.id)
+    removeServer: function() {
+      this.$emit("removeServer", this.server.id);
     }
   },
   mounted: function() {
@@ -87,8 +84,6 @@ export default {
   grid-column-end: 2;
   text-align: left;
   font-size: 16px;
-  /* border: 1px;
-  border-right-style: solid; */
 }
 
 .rightMenu-server {
@@ -97,8 +92,6 @@ export default {
   text-align: left;
   font-size: 16px;
   padding-bottom: 10px;
-  /* border: 1px;
-  border-right-style: solid; */
 }
 
 .el-input {

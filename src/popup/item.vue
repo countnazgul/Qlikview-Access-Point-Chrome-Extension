@@ -3,7 +3,7 @@
     <li class="item ">  
       <div class="grid-container-app">
         <span v-on:click="openDoc" class="link leftMenu-app" :title="tooltip">{{ doc.text }}</span>
-        <div class="rightMenu-app" v-bind:style="{ color: doc.color, 'background-color': doc.color  }">.</div>
+        <div class="rightMenu-app" :title="serverName" v-bind:style="{ color: doc.color, 'background-color': doc.color  }" >.</div>
       </div>
     </li>
   </div>
@@ -14,7 +14,8 @@ export default {
   props: ['doc'],
   data() {
     return {
-      tooltip: ''
+      tooltip: '',
+      serverName: ''
     };
   },
   methods: {
@@ -27,6 +28,7 @@ export default {
   mounted: function() {
     var _this = this;
     var d = _this.doc
+    _this.serverName = _this.doc.serverName
     
     _this.tooltip = 
     `Document: ${d.text}
